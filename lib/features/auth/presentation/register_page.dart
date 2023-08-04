@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ticket/core/constants/size_constants.dart';
 import 'package:ticket/features/auth/widgets/decoration_input.dart';
 import 'package:ticket/features/auth/widgets/title.dart';
-import 'package:ticket/features/presentation/widgets/my_button.dart';
+import 'package:ticket/features/events/presentation/widgets/my_button.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
