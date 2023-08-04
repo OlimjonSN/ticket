@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ticket/core/Theme/light_theme.dart';
-import 'package:ticket/features/auth/presentation/login_page.dart';
+
 import 'package:ticket/features/auth/presentation/register_page.dart';
-import 'package:ticket/welcome_page.dart';
 
 import 'core/Theme/dark_theme.dart';
 
