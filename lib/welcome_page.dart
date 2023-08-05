@@ -16,18 +16,23 @@ class WelcomPage extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: const Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          MyTitle(),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: SizeConstants.paddingMedium),
-            child: MyButton(text: 'Login'),
-          ),
-          MyButton(text: 'Sign Up'),
-        ],
-      )),
+      child: const Padding(
+        padding: EdgeInsets.only(top: 150),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            MyTitle(),
+            SizedBox(
+              height: SizeConstants.paddingXLarge,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: SizeConstants.paddingMedium),
+              child: MyButton(text: 'Login'),
+            ),
+            MyButton(text: 'Sign Up'),
+          ],
+        ),
+      ),
     ));
   }
 }

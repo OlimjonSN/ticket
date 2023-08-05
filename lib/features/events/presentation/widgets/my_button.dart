@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:ticket/core/constants/size_constants.dart';
 
@@ -18,7 +20,7 @@ class MyButton extends StatelessWidget {
         width: 100,
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,
-          borderRadius: BorderRadius.circular(SizeConstants.radiusSmall),
+          borderRadius: BorderRadius.circular(SizeConstants.radiusLarge),
         ),
         child: Center(child: Text(text, style: Theme.of(context).textTheme.subtitle2)),
       ),
