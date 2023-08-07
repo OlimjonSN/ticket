@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:ticket/features/auth/data/models/user_model.dart';
+import 'package:ticket/injection.dart';
 
 class AuthRemoteData {
   final Dio dio;
@@ -11,8 +14,13 @@ class AuthRemoteData {
       '/user/registration/',
       data: usermodel.toJson()..addAll({'password': password, 'password1': password1}),
     );
-    UserModel userM = UserModel.fromJson(res.data);
-    return userM;
+    sl<Dio>().options.headers['X-CSRFToken'] = Cookie.fromSetCookieValue(res.headers['set-cookie']![0]).value;
+
+    if (res.statusCode != 201) {
+      throw Exception('Error');
+    }
+
+    return usermodel;
   }
 
   // login
@@ -24,6 +32,10 @@ class AuthRemoteData {
         'password': password,
       },
     );
-    return res.statusCode ?? 400;
+    sl<Dio>().options.headers['X-CSRFToken'] = Cookie.fromSetCookieValue(res.headers['set-cookie']![0]).value;
+    if (res.statusCode != 200) {
+      throw Exception('Error');
+    }
+    return UserModel.fromJson(res.data);
   }
 }

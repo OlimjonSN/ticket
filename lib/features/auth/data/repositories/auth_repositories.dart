@@ -17,8 +17,11 @@ class AuthRepositories {
   Future<UserModel> register(UserModel userModel, String password, String password1) async {
     if (await networkInfo.isConnected) {
       //register
+
       UserModel userM = await authRemoteData.register(usermodel: userModel, password: password, password1: password1);
+      
       await authLocalData.saveUserModel(userM);
+
       return userM;
     } else {
       throw Exception('No internet connection');

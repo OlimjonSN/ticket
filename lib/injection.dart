@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,10 +28,14 @@ Future<void> init() async {
   //! Core
   sl.registerLazySingleton(() => NetworkInfo(internetConnectionChecker: sl()));
 
+  BaseOptions options = BaseOptions(baseUrl: 'http://127.0.0.1:8000/');
   //! External
   final sharedPreferences = await SharedPreferences.getInstance();
 
-  sl.registerLazySingleton(() => Dio(BaseOptions(baseUrl: 'http://127.0.0.1:8000/')));
+  final dio = Dio(options);
+  CookieJar cookiejar = CookieJar();
+  dio.interceptors.add(CookieManager(cookiejar));
+  sl.registerLazySingleton(() => dio);
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => InternetConnectionChecker());
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ticket/core/routes/route.dart';
 
 import 'core/Theme/dark_theme.dart';
 import 'core/Theme/light_theme.dart';
@@ -24,12 +25,13 @@ class MyApp extends StatelessWidget {
           create: (_) => sl<AuthProvider>(),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'Ticket',
         theme: lightTheme,
         darkTheme: darkTheme,
-        home: const RegisterPage(),
+        routerConfig: AppRoute.router,
+        
       ),
     );
   }

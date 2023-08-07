@@ -11,30 +11,37 @@ class AuthProvider with ChangeNotifier {
   String? error;
   Status status = Status.uinitialized;
 
-  Future<UserModel> register(UserModel userModel, String password, String password1) async {
+  Future<void> register(UserModel userModel, String password, String password1) async {
     try {
       status = Status.authenticating;
+      notifyListeners();
       userModel = await authRepositories.register(userModel, password, password1);
       status = Status.authenticated;
-      return userModel;
-    } on Exception catch (e) {
+      notifyListeners();
+    } catch (e) {
       status = Status.error;
+      notifyListeners();
       error = 'Invalid email or password $e';
       notifyListeners();
-      throw Exception(e);
     }
   }
-  Future<UserModel> login(String email, String password) async {
+
+  Future<void> login(String email, String password) async {
     try {
       status = Status.authenticating;
+      notifyListeners();
       userModel = await authRepositories.login(email, password);
       status = Status.authenticated;
-      return userModel!;
+      notifyListeners();
+
+ 
     } on Exception catch (e) {
       status = Status.error;
+      notifyListeners();
+
       error = 'Invalid email or password $e';
       notifyListeners();
-      throw Exception(e);
+    
     }
   }
 }

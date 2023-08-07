@@ -3,11 +3,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/size_constants.dart';
+import '../../core/constants/size_constants.dart';
 
 InputDecoration decorationInput(String text, BuildContext context, [String error = '']) {
   return InputDecoration(
-    errorText: error.isEmpty ? null : error,
     hintText: text,
     hintStyle: Theme.of(context).textTheme.subtitle1,
     focusedBorder: OutlineInputBorder(

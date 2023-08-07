@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ticket/core/constants/size_constants.dart';
-import 'package:ticket/features/auth/widgets/title.dart';
+import 'package:ticket/features/widgets/title.dart';
 import 'package:ticket/features/events/presentation/widgets/my_button.dart';
 
 class WelcomPage extends StatelessWidget {
@@ -16,20 +17,20 @@ class WelcomPage extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: const Padding(
-        padding: EdgeInsets.only(top: 150),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 150),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            MyTitle(),
-            SizedBox(
+            const MyTitle(),
+            const SizedBox(
               height: SizeConstants.paddingXLarge,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: SizeConstants.paddingMedium),
-              child: MyButton(text: 'Login'),
+              padding: const EdgeInsets.symmetric(vertical: SizeConstants.paddingMedium),
+              child: MyButton(text: 'Login', onPressed: () => context.go('/welcome/login')),
             ),
-            MyButton(text: 'Sign Up'),
+            MyButton(text: 'Sign Up', onPressed: () => context.go('/welcome/register')),
           ],
         ),
       ),
