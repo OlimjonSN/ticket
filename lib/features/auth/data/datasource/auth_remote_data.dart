@@ -10,9 +10,9 @@ class AuthRemoteData {
     Response res = await dio.post(
       '/user/registration/',
       data: usermodel.toJson()..addAll({'password': password, 'password1': password1}),
-        
     );
-    return res.statusCode ?? 400;
+    UserModel userM = UserModel.fromJson(res.data);
+    return userM;
   }
 
   // login

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ticket/core/Theme/light_theme.dart';
-
-import 'package:ticket/welcome_page.dart';
+import 'package:provider/provider.dart';
 
 import 'core/Theme/dark_theme.dart';
+import 'core/Theme/light_theme.dart';
+import 'features/auth/presentation/pages/register_page.dart';
+import 'features/auth/presentation/provider/auth_provider.dart';
+import 'injection.dart';
 
-void main() {
+void main() async {
+  await init();
   runApp(const MyApp());
 }
 
@@ -15,12 +18,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Ticket',
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      home: const WelcomPage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthProvider>(
+          create: (_) => sl<AuthProvider>(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Ticket',
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        home: const RegisterPage(),
+      ),
     );
   }
 }
