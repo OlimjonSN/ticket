@@ -15,7 +15,6 @@ class EventRemoteData {
     if (res.statusCode != 201) {
       throw Exception('Error');
     }
-    return res.data;
   }
 
   Future getEvents() async {

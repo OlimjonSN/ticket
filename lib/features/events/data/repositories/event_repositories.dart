@@ -24,11 +24,11 @@ class EventRepositories {
     }
   }
 
-  Future<EventModel> createEvent(Map<String, dynamic> event) async {
+  Future createEvent(Map<String, dynamic> event) async {
     if (await networkInfo.isConnected) {
-      final events = await eventRemoteDataSource.createEvent(event: event);
+      await eventRemoteDataSource.createEvent(event: event);
 
-      return events;
+      
     } else {
       throw Exception('No internet connection');
     }

@@ -5,6 +5,8 @@ class EventsAll extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SingleChildScrollView(
+      child: SizedBox(height: MediaQuery.of(context).size.height, child: const Text('All Events'))
+    );
   }
 }
