@@ -5,10 +5,11 @@ import 'package:ticket/core/constants/size_constants.dart';
 
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
-  scaffoldBackgroundColor: Colors.black,
+  scaffoldBackgroundColor: Colors.white,
+  primarySwatch: Colors.lightBlue,
   colorScheme: const ColorScheme.dark(
-    background: Color(0xFF181A1F),
-    primary: Colors.black,
+    background: Colors.lightBlue,
+    primary: Colors.grey,
     secondary: Color(0xFFEC540E),
     error: Colors.red,
   ),
@@ -21,8 +22,8 @@ ThemeData darkTheme = ThemeData(
     headline6: Typography.whiteMountainView.headline6?.copyWith(fontSize: 16),
     subtitle1: Typography.whiteMountainView.subtitle1?.copyWith(fontSize: 15, color: Colors.grey[500]),
     subtitle2: Typography.whiteMountainView.subtitle2?.copyWith(color: Colors.white, fontSize: SizeConstants.textSizeMedium),
-    bodyText1: Typography.whiteMountainView.subtitle2?.copyWith(color: const  Color(0xFFEC540E), fontSize: SizeConstants.textSizeXXXXLarge),
-    bodyText2: Typography.whiteMountainView.subtitle2?.copyWith(color: const  Color(0xFFEC540E), fontSize: SizeConstants.textSizeMedium),
+    bodyText1: Typography.whiteMountainView.subtitle2?.copyWith(color: const Color(0xFFEC540E), fontSize: SizeConstants.textSizeXXXXLarge),
+    bodyText2: Typography.whiteMountainView.subtitle2?.copyWith(color: const Color(0xFFEC540E), fontSize: SizeConstants.textSizeMedium),
   ),
   appBarTheme: const AppBarTheme(
     backgroundColor: Colors.transparent,

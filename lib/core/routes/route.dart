@@ -15,7 +15,7 @@ class AppRoute {
   static String eventCreateRoute = '/eventCreate';
 
   static GoRouter router = GoRouter(
-    initialLocation: eventsAllRoute,
+    initialLocation: initialRoute,
     routes: [
       GoRoute(path: initialRoute, builder: (context, state) => const WelcomPage(), routes: [
         GoRoute(

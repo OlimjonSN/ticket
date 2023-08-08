@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket/core/routes/route.dart';
+import 'package:ticket/features/events/presentation/provider/events_provider.dart';
 
-import 'core/Theme/dark_theme.dart';
-import 'core/Theme/light_theme.dart';
-import 'features/auth/presentation/pages/register_page.dart';
 import 'features/auth/presentation/provider/auth_provider.dart';
 import 'injection.dart';
 
@@ -21,17 +19,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<AuthProvider>(
-          create: (_) => sl<AuthProvider>(),
-        ),
+        ChangeNotifierProvider<AuthProvider>(create: (_) => sl<AuthProvider>()),
+        ChangeNotifierProvider<EventsProvider>(create: (_) => sl<EventsProvider>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'Ticket',
-        theme: lightTheme,
-        darkTheme: darkTheme,
+        theme: ThemeData(
+          primarySwatch: Colors.cyan,
+          appBarTheme: const AppBarTheme(color: Colors.transparent, elevation: 0),
+        ),
         routerConfig: AppRoute.router,
-        
       ),
     );
   }

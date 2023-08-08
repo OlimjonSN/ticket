@@ -7,7 +7,6 @@ class UserModel {
   UserModel({this.email, this.username, this.firstName, this.lastName});
 
   UserModel.fromJson(Map<String, dynamic> json) {
-    print(json['email']);
     firstName = json["first_name"];
     lastName = json["last_name"];
     email = json["email"];

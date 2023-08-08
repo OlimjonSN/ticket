@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -57,7 +59,7 @@ class _RegisterPageState extends State<LoginPage> {
   void loginFunc() async {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
-    UserModel userModel = UserModel(
+    UserModel(
       firstName: emailController.text,
       email: emailController.text,
     );
