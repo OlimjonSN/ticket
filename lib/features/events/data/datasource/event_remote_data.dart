@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:dio/dio.dart';
-import 'package:ticket/features/events/data/models/event_model.dart';
+
+import '../models/event_model.dart';
 
 class EventRemoteData {
   final Dio dio;

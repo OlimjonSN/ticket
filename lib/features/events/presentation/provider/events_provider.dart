@@ -1,7 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
-import 'package:ticket/features/events/data/models/event_model.dart';
-import 'package:ticket/features/events/data/repositories/event_repositories.dart';
+
+import '../../data/models/event_model.dart';
+import '../../data/repositories/event_repositories.dart';
 
 enum Status { uninitialized, created, creating, error }
 
