@@ -14,7 +14,7 @@ class EventRepositories {
     required this.eventLocalDataSource,
   });
 
-  Future<EventModel> getEvents() async {
+  Future<List<EventModel>> getEvents() async {
     if (await networkInfo.isConnected) {
       final events = await eventRemoteDataSource.getEvents();
       await eventLocalDataSource.saveEventModel(events);
@@ -27,8 +27,6 @@ class EventRepositories {
   Future createEvent(Map<String, dynamic> event) async {
     if (await networkInfo.isConnected) {
       await eventRemoteDataSource.createEvent(event: event);
-
-      
     } else {
       throw Exception('No internet connection');
     }

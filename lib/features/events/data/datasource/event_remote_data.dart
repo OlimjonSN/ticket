@@ -17,13 +17,8 @@ class EventRemoteData {
     }
   }
 
-  Future getEvents() async {
-    Response res = await dio.get('/events/all');
-
-    if (res.statusCode == 200) {
-      return EventModel.fromJson(res.data);
-    } else {
-      throw Exception('Error');
-    }
+  Future<List<EventModel>> getEvents() async {
+    final response = await dio.get('/events/all/');
+    return (response.data as List).map((e) => EventModel.fromJson(e)).toList();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:ticket/features/auth/presentation/pages/login_page.dart';
+import 'package:ticket/features/events/presentation/pages/details_page.dart';
 import 'package:ticket/features/events/presentation/pages/event_create.dart';
 import 'package:ticket/features/events/presentation/pages/events_all.dart';
 import 'package:ticket/features/home_page/presentation/home_page.dart';
@@ -13,6 +14,7 @@ class AppRoute {
   static String registerRoute = '/register';
   static String eventsAllRoute = '/eventsAll';
   static String eventCreateRoute = '/eventCreate';
+  static String detailPageRoute = '/detailPage';
 
   static GoRouter router = GoRouter(
     initialLocation: initialRoute,
@@ -35,6 +37,12 @@ class AppRoute {
           GoRoute(
             path: '/eventsAll',
             builder: (context, state) => const EventsAll(),
+            routes: [
+              GoRoute(
+                path: 'detailPage',
+                builder: (context, state) => const DeatailPage(),
+              ),
+            ],
           ),
           GoRoute(
             path: '/eventCreate',

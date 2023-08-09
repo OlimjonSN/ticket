@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
             activeColor: Theme.of(context).colorScheme.secondary, // selected icon and text color
             iconSize: 24, // tab button icon size
             tabBackgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0.1), // selected tab background color
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5), // navigation bar padding
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5), // navigation bar padding
             tabs: [
               GButton(
                 icon: Icons.event,
@@ -44,10 +44,6 @@ class HomePage extends StatelessWidget {
                 icon: Icons.confirmation_number_outlined,
                 text: 'reservation',
               ),
-              const GButton(
-                icon: Icons.person_outline,
-                text: 'Profile',
-              )
             ]),
       ),
     );

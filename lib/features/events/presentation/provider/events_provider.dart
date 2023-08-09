@@ -8,7 +8,7 @@ enum Status { uninitialized, created, creating, error }
 class EventsProvider with ChangeNotifier {
   EventRepositories eventsRepositories;
   EventsProvider({required this.eventsRepositories});
-  EventModel? events;
+  List<EventModel>? events;
   String? error;
   Status status = Status.uninitialized;
   Future<void> createEvent(Map<String, dynamic> event) async {
@@ -18,6 +18,7 @@ class EventsProvider with ChangeNotifier {
       await eventsRepositories.createEvent(event);
       status = Status.created;
       notifyListeners();
+      status = Status.uninitialized;
     } catch (e) {
       print(e);
       status = Status.error;
@@ -27,7 +28,7 @@ class EventsProvider with ChangeNotifier {
     }
   }
 
-  Future<void> getEvents() async {
+  Future getEvents() async {
     try {
       status = Status.creating;
       notifyListeners();

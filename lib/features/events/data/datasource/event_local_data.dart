@@ -8,8 +8,8 @@ class EventLocalData {
   EventLocalData({required this.sharedPreference});
 
   //save model
-  Future<void> saveEventModel(EventModel eventModel) async {
-    await sharedPreference.setString('eventModel', jsonEncode(eventModel.toJson()));
+  Future<void> saveEventModel(List<EventModel> eventModel) async {
+    await sharedPreference.setStringList('eventModel', eventModel.map((e) => jsonEncode(e.toJson())).toList());
   }
 
   //get model
