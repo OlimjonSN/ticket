@@ -58,39 +58,34 @@ class _EventCreateState extends State<EventCreate> {
                 decoration: decorationInput('Event Name', context),
               ),
               const SizedBox(height: SizeConstants.paddingMedium),
-              Row(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('${selectedDate.year}-0${selectedDate.month}-${selectedDate.day}', style: const TextStyle(fontSize: 20)),
-                      const SizedBox(width: SizeConstants.paddingMedium),
-                      ElevatedButton(
-                          onPressed: () async {
-                            selectedDate = (await showDateTimePicker(context: context))!;
-                          },
-                          child: Text('Select Date', style: Theme.of(context).textTheme.subtitle1))
-                    ],
-                  ),
-                  const SizedBox(width: 20),
-                  DropdownButton<String>(
-                    value: topicItem,
-                    items: ['Biology', 'Information Technologies', 'Science', 'Bussiness', 'Marketing'].map((String item) {
-                      return DropdownMenuItem<String>(
-                        value: item,
-                        child: Text(item),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      // When the dropdown value is changed, update the selected item
-                      setState(() {
-                        topicItem = newValue;
-                      });
-                    },
-                    hint: const Text('Select an topic'), // Optional: Displayed when no item is selected
-                  ),
+                  Text('${selectedDate.year}-0${selectedDate.month}-${selectedDate.day}', style: const TextStyle(fontSize: 20)),
+                  const SizedBox(width: SizeConstants.paddingMedium),
+                  ElevatedButton(
+                      onPressed: () async {
+                        selectedDate = (await showDateTimePicker(context: context))!;
+                      },
+                      child: Text('Select Date', style: Theme.of(context).textTheme.subtitle1))
                 ],
+              ),
+              const SizedBox(width: 20),
+              DropdownButton<String>(
+                value: topicItem,
+                items: ['Biology', 'Information Technologies', 'Science', 'Bussiness', 'Marketing'].map((String item) {
+                  return DropdownMenuItem<String>(
+                    value: item,
+                    child: Text(item),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  // When the dropdown value is changed, update the selected item
+                  setState(() {
+                    topicItem = newValue;
+                  });
+                },
+                hint: const Text('Select an topic'), // Optional: Displayed when no item is selected
               ),
               SizedBox(height: SizeConstants.paddingMedium),
               TextFormField(
@@ -114,18 +109,17 @@ class _EventCreateState extends State<EventCreate> {
                 decoration: decorationInput('Description', context),
               ),
               const SizedBox(height: SizeConstants.paddingMedium),
+              TextFormField(
+                controller: priceController,
+                keyboardType: TextInputType.number,
+                cursorColor: Theme.of(context).colorScheme.secondary,
+                decoration: decorationInput('Price', context),
+              ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: TextFormField(
-                      controller: priceController,
-                      keyboardType: TextInputType.number,
-                      cursorColor: Theme.of(context).colorScheme.secondary,
-                      decoration: decorationInput('Price', context),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: SizeConstants.paddingMedium,
+                    child: Text('currency', style: Theme.of(context).textTheme.subtitle1),
                   ),
                   Expanded(
                     child: DropdownButton<String>(
