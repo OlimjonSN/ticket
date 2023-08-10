@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:ticket/features/auth/presentation/pages/login_page.dart';
+import 'package:ticket/features/events/data/models/event_model.dart';
 import 'package:ticket/features/events/presentation/pages/details_page.dart';
 import 'package:ticket/features/events/presentation/pages/event_create.dart';
 import 'package:ticket/features/events/presentation/pages/events_all.dart';
@@ -40,7 +41,9 @@ class AppRoute {
             routes: [
               GoRoute(
                 path: 'detailPage',
-                builder: (context, state) => const DeatailPage(),
+                builder: (context, state) => DeatailPage(
+                  data: (state.extra as EventModel),
+                ),
               ),
             ],
           ),

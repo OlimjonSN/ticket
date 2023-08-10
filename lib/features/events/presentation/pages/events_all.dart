@@ -42,9 +42,12 @@ class _EventsAllState extends State<EventsAll> {
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
-                      onTap: () => context.go('/eventsAll/detailPage'),
+                      onTap: () => context.go('/eventsAll/detailPage', extra: provider.events![index]),
                       leading: Image.network(provider.events![index].thumbnail!),
-                      title: Text(provider.events![index].name!),
+                      title: Text(
+                        provider.events![index].name!,
+                        style: TextStyle(color: Colors.orange),
+                      ),
                       subtitle: Text(provider.events![index].description!),
                       trailing: Text(provider.events![index].place!),
                     ),

@@ -1,79 +1,123 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:ticket/features/events/data/models/event_model.dart';
 
-class DeatailPage extends StatelessWidget {
-  const DeatailPage({super.key});
+class DeatailPage extends StatefulWidget {
+  EventModel data;
+  DeatailPage({super.key, required this.data});
+
+  @override
+  State<DeatailPage> createState() => _DeatailPageState();
+}
+
+class _DeatailPageState extends State<DeatailPage> {
+  int number = 1;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFEA1515),
-      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0.0),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-              flex: 3,
+    return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+        image: NetworkImage(widget.data.thumbnail!),
+        fit: BoxFit.cover,
+      )),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: Colors.white,
+            ),
+            backgroundColor: Colors.transparent,
+            elevation: 0.0),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(flex: 4, child: SizedBox()),
+            Expanded(
+              flex: 7,
               child: Container(
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/Ellipse.png'), fit: BoxFit.fitWidth, alignment: Alignment.topCenter)),
-                child: Image.asset('assets/images/burger.png', width: 180, height: 200),
-              )),
-          Expanded(
-            flex: 7,
-            child: Container(
-              decoration: const ShapeDecoration(
                 color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(70)),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 30),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 52,
-                          decoration: ShapeDecoration(color: const Color(0xFFFF0202), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40))),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(Icons.star, color: Colors.white, size: 24),
-                              const Text('4.8', textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 24, fontFamily: 'Poppins', fontWeight: FontWeight.w600)),
-                            ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 45,
+                            decoration: ShapeDecoration(color: Colors.cyan, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40))),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(Icons.chair, color: Colors.white, size: 24),
+                                Text('${widget.data.numberOfSeats}', textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 24, fontFamily: 'Poppins', fontWeight: FontWeight.w600)),
+                              ],
+                            ),
                           ),
-                        ),
-                        const Text('\$30', textAlign: TextAlign.center, style: TextStyle(color: Color(0xFFDFA308), fontSize: 24, fontFamily: 'Poppins', fontWeight: FontWeight.w600)),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Beef burger', textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: 24, fontFamily: 'Poppins', fontWeight: FontWeight.w500)),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    const Text('Big juicy beef burger with cheese, lettuce, tomato, and special sauce!', style: TextStyle(color: Color(0xFF838181), fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-                    const SizedBox(height: 20),
-                    const Row(
-                      children: [
-                        Text('Add Ons', textAlign: TextAlign.center, style: TextStyle(color: Color(0xFF424242), fontSize: 20, fontFamily: 'Poppins', fontWeight: FontWeight.w500)),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    const SizedBox(height: 20),
-                    Text('data')
-                  ],
+                          Text('\$ ${widget.data.ticketPrice}', textAlign: TextAlign.center, style: TextStyle(color: Color(0xFFDFA308), fontSize: 24, fontFamily: 'Poppins', fontWeight: FontWeight.w600)),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Text(widget.data.name!, textAlign: TextAlign.center, style: const TextStyle(color: Colors.black, fontSize: 24, fontFamily: 'Poppins', fontWeight: FontWeight.w500)),
+                      Row(
+                        children: [
+                          Text('Description', style: const TextStyle(color: Color(0xFF838181), fontSize: 18, fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
+                        ],
+                      ),
+                      // const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Text(widget.data.description!, style: const TextStyle(color: Color(0xFF838181), fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
+                          const SizedBox(height: 10),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text('Location: ' + widget.data.place!, style: const TextStyle(color: Color(0xFF838181), fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
+                        ],
+                      ),
+
+                      Row(
+                        children: [
+                          Text('Date: ' + DateFormat('dd-mm-yyyy : hh-MM').format(DateTime.parse(widget.data.date!)), style: const TextStyle(color: Color(0xFF838181), fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (number > 1) {
+                                    number--;
+                                  }
+                                });
+                              },
+                              icon: Icon(Icons.remove_circle_outline, size: 20),
+                              color: Colors.cyan,
+                              iconSize: 30),
+                          Text('$number'),
+                          IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  number++;
+                                });
+                              },
+                              icon: Icon(Icons.add_circle_outline, size: 20),
+                              color: Colors.cyan,
+                              iconSize: 30),
+                          TextButton(onPressed: () {}, child: Text('add reservation', style: TextStyle(color: Colors.white, fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.w400)), style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.cyan)))
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
