@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Ticket',
         theme: ThemeData(
+          fontFamily: 'RobotoSlab',
           primarySwatch: Colors.cyan,
           appBarTheme: const AppBarTheme(color: Colors.transparent, elevation: 0),
         ),
