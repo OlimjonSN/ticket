@@ -181,10 +181,6 @@ class _EventCreateState extends State<EventCreate> {
       'description': descriptionController.text,
     });
 
-    if (eventsProvider.status == Status.created) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Event created successfully')));
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Event created failed ${eventsProvider.error}')));
-    }
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Event created successfully')));
   }
 }

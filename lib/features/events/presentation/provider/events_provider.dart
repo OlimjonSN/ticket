@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../data/models/event_model.dart';
@@ -20,9 +21,16 @@ class EventsProvider with ChangeNotifier {
       notifyListeners();
       status = Status.uninitialized;
     } catch (e) {
-      print(e);
-      status = Status.error;
-      notifyListeners();
+      if (e is DioException) {
+        error = e.response?.data.toString();
+        status = Status.error;
+        notifyListeners();
+        return;
+      } else {
+        status = Status.error;
+        notifyListeners();
+      }
+
       error = 'Invalid  $e';
       notifyListeners();
     }
