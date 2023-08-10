@@ -40,9 +40,10 @@ class HomePage extends StatelessWidget {
                 text: 'Create Event',
                 onPressed: () => context.go('/eventCreate'),
               ),
-              const GButton(
+              GButton(
                 icon: Icons.confirmation_number_outlined,
                 text: 'reservation',
+                onPressed: () => context.go('/reservationAll'),
               ),
             ]),
       ),

@@ -18,7 +18,7 @@ class MyTitle extends StatelessWidget {
         children: [
           Text(
             'Ticket Booking',
-            style: Theme.of(context).textTheme.bodyText1,
+            style: TextStyle(fontSize: 35, fontWeight: FontWeight.w700, color: Colors.orange),
           ),
           Text(
             '- BUY EMOTION, NOT TICKET -',

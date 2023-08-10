@@ -13,6 +13,9 @@ import 'package:ticket/features/events/data/datasource/event_local_data.dart';
 import 'package:ticket/features/events/data/datasource/event_remote_data.dart';
 import 'package:ticket/features/events/data/repositories/event_repositories.dart';
 import 'package:ticket/features/events/presentation/provider/events_provider.dart';
+import 'package:ticket/features/reservation/data/datasource/reservation_remote_data.dart';
+import 'package:ticket/features/reservation/data/repository/repositories.dart';
+import 'package:ticket/features/reservation/provider/reservation_provider.dart';
 
 final sl = GetIt.instance;
 
@@ -20,17 +23,19 @@ Future<void> init() async {
   // Providers
   sl.registerFactory(() => AuthProvider(authRepositories: sl()));
   sl.registerFactory(() => EventsProvider(eventsRepositories: sl()));
+  sl.registerFactory(() => ReservationProviderr(reservationRepositories: sl()));
 
   // Repositories
   sl.registerLazySingleton(() => AuthRepositories(networkInfo: sl(), authLocalData: sl(), authRemoteData: sl()));
   sl.registerLazySingleton(() => EventRepositories(networkInfo: sl(), eventLocalDataSource: sl(), eventRemoteDataSource: sl()));
+  sl.registerLazySingleton(() => ReservationsRepositories(reservationRemoteData: sl(), networkInfo: sl()));
 
   // Data Sources
   sl.registerLazySingleton(() => AuthLocalData(sharedPreference: sl()));
   sl.registerLazySingleton(() => AuthRemoteData(dio: sl()));
   sl.registerLazySingleton(() => EventLocalData(sharedPreference: sl()));
   sl.registerLazySingleton(() => EventRemoteData(dio: sl()));
-
+  sl.registerLazySingleton(() => ReservationRemoteData(dio: sl()));
   //! Core
   sl.registerLazySingleton(() => NetworkInfo(internetConnectionChecker: sl()));
 

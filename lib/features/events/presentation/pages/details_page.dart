@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:ticket/features/events/data/models/event_model.dart';
+
+import '../../../reservation/provider/reservation_provider.dart';
 
 class DeatailPage extends StatefulWidget {
   EventModel data;
@@ -108,7 +111,12 @@ class _DeatailPageState extends State<DeatailPage> {
                               icon: Icon(Icons.add_circle_outline, size: 20),
                               color: Colors.cyan,
                               iconSize: 30),
-                          TextButton(onPressed: () {}, child: Text('add reservation', style: TextStyle(color: Colors.white, fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.w400)), style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.cyan)))
+                          TextButton(
+                              onPressed: () {
+                                context.read<ReservationProviderr>().createReservation({'event': widget.data.id, 'number_of_tickets': number});
+                              },
+                              child: Text('add reservation', style: TextStyle(color: Colors.white, fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
+                              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.cyan)))
                         ],
                       ),
                     ],

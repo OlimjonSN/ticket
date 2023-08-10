@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket/core/routes/route.dart';
 import 'package:ticket/features/events/presentation/provider/events_provider.dart';
+import 'package:ticket/features/reservation/provider/reservation_provider.dart';
 
 import 'features/auth/presentation/provider/auth_provider.dart';
 import 'injection.dart';
@@ -18,10 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<AuthProvider>(create: (_) => sl<AuthProvider>()),
-        ChangeNotifierProvider<EventsProvider>(create: (_) => sl<EventsProvider>()),
-      ],
+      providers: [ChangeNotifierProvider<AuthProvider>(create: (_) => sl<AuthProvider>()), ChangeNotifierProvider<EventsProvider>(create: (_) => sl<EventsProvider>()), ChangeNotifierProvider<ReservationProviderr>(create: (_) => sl<ReservationProviderr>())],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'Ticket',

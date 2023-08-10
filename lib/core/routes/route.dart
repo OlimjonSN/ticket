@@ -5,6 +5,7 @@ import 'package:ticket/features/events/presentation/pages/details_page.dart';
 import 'package:ticket/features/events/presentation/pages/event_create.dart';
 import 'package:ticket/features/events/presentation/pages/events_all.dart';
 import 'package:ticket/features/home_page/presentation/home_page.dart';
+import 'package:ticket/features/reservation/presentations/all_resrvation.dart';
 import 'package:ticket/welcome_page.dart';
 
 import '../../features/auth/presentation/pages/register_page.dart';
@@ -16,6 +17,7 @@ class AppRoute {
   static String eventsAllRoute = '/eventsAll';
   static String eventCreateRoute = '/eventCreate';
   static String detailPageRoute = '/detailPage';
+  static String reservationAllRoute = '/reservationAll';
 
   static GoRouter router = GoRouter(
     initialLocation: initialRoute,
@@ -50,6 +52,10 @@ class AppRoute {
           GoRoute(
             path: '/eventCreate',
             builder: (context, state) => const EventCreate(),
+          ),
+          GoRoute(
+            path: '/reservationAll',
+            builder: (context, state) => const ReservationAll(),
           ),
         ],
       )
